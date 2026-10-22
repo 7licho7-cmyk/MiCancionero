@@ -1,0 +1,126 @@
+/* Paleta: negros, grises, blancos y tonos oscuros. El naranja se reserva para los acordes. */
+:root{
+  --bg0:#08090b;--bg1:#121419;--bg2:#1b1f27;
+  --ink:#ecebe7;--mut:#9c9ea6;--line:rgba(255,255,255,.13);
+  --soft:rgba(255,255,255,.05);--soft2:rgba(255,255,255,.1);
+  --acc:#e6e3dc;--play:rgba(230,227,220,.18);--orange:#ff8a3d;
+  --serif:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+  --sans:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --paper:#ecebe7;
+  color-scheme:dark;box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;font:15px/1.5 var(--sans);letter-spacing:.005em;color:var(--ink);background:linear-gradient(160deg,var(--bg0),var(--bg1) 55%,var(--bg2)) fixed;min-height:100vh}
+button,input,select,textarea{font:inherit}
+h2,h3,.card .t b{font-family:var(--serif);font-weight:600;letter-spacing:0}
+
+/* Marca: el isologo es negro, por eso va sobre fondo claro */
+.brand{display:flex;align-items:center;gap:10px;background:var(--paper);color:#111;border:0;border-radius:14px;padding:8px 16px 8px 10px;cursor:pointer;font-family:var(--serif);font-size:23px;font-weight:700;line-height:1;text-align:left}
+.brand img{width:32px;height:32px;display:block;flex:none}
+.brand:hover{background:#fff}
+
+/* Estructura */
+.app{display:grid;grid-template-columns:220px 1fr;min-height:100vh}
+aside{border-right:1px solid var(--line);padding:18px 14px;display:flex;flex-direction:column;gap:12px;background:rgba(0,0,0,.25)}
+main{min-width:0}
+.top{display:flex;gap:10px;flex-wrap:wrap;align-items:center;padding:14px 24px;border-bottom:1px solid var(--line)}
+.pad{padding:24px}
+.user{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.av{width:38px;height:38px;border-radius:50%;background:var(--acc);color:#111;display:grid;place-items:center;font-weight:600}
+.rec{background:var(--soft);border:1px solid var(--line);border-radius:16px;padding:12px;flex:1;min-height:160px;max-height:50vh;overflow:auto}
+.rec p{margin:0 0 8px;color:var(--mut);font-size:13px}
+.rec a{display:block;padding:6px 0;cursor:pointer;border-bottom:1px solid var(--line)}
+.rec a:hover{color:#fff}
+
+/* Botones y campos */
+.b{background:var(--soft);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:8px 14px;cursor:pointer}
+.b:hover{background:var(--soft2)}
+.b.on{background:var(--acc);color:#111;border-color:var(--acc)}
+.b:disabled{opacity:.4;cursor:default}
+.c{background:var(--soft);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:3px 11px;cursor:pointer;font-size:13px}
+.c:hover{background:var(--soft2)}
+.c.on{background:var(--acc);color:#111;border-color:var(--acc)}
+.c.ic{width:28px;padding:3px 0;text-align:center;font-size:15px;line-height:1.1}
+input.ed,select.ed{background:var(--soft);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+select.ed option{color:#222}
+.srch{display:flex;gap:12px;margin-bottom:26px}
+.srch input{flex:1;background:var(--soft);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:12px 20px}
+
+/* Tarjetas de canciones */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:22px}
+.empty{color:var(--mut);padding:30px 0}
+.card{position:relative;aspect-ratio:1;border-radius:22px;border:1px solid rgba(255,255,255,.3);overflow:hidden;cursor:pointer;background:var(--soft)}
+.card::before{content:"";position:absolute;inset:-8px;background:var(--c) center/cover;filter:blur(3px);opacity:.28;transition:opacity .35s,filter .35s}
+.card:hover::before{filter:blur(0);opacity:1}
+.card::after{content:"";position:absolute;inset:0 0 50% 0;background:linear-gradient(rgba(0,0,0,.7),transparent)}
+.card .t{position:relative;z-index:1;padding:14px 16px;text-shadow:0 1px 6px rgba(0,0,0,.9)}
+.card .t b{font-size:21px;line-height:1.15;display:block}
+.card .t span{display:block;font-size:13px}
+.card .ic{position:absolute;z-index:1;left:14px;bottom:10px;font-size:12px;text-shadow:0 1px 5px #000}
+
+/* Cabecera del editor */
+.hd{display:flex;gap:16px;align-items:center;margin-bottom:22px}
+.cv{width:84px;height:84px;border-radius:16px;border:1px solid rgba(255,255,255,.35);background:var(--soft) center/cover;flex:none}
+.hd h2{margin:0;font-size:30px;line-height:1.1}
+.pen{background:none;border:0;color:var(--mut);cursor:pointer;font-size:18px}
+.pen:hover{color:#fff}
+.chips{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:8px}
+.bpm{color:var(--mut);font-size:13px}
+h3{margin:22px 0 8px;font-size:23px}
+
+/* Letra y acordes */
+.lbar{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:10px;color:var(--mut);font-size:13px}
+textarea{width:100%;min-height:220px;background:rgba(0,0,0,.35);color:var(--ink);border:1px solid var(--line);border-radius:14px;padding:14px;font:15px/1.5 var(--sans);resize:vertical}
+textarea::selection{background:rgba(255,138,61,.45)}
+.pvh{margin:22px 0 6px;color:var(--mut);font-size:13px}
+.pv{padding:4px 2px 20px}
+.ln{white-space:pre-wrap;line-height:1.25;margin:8px 0}
+.w{display:inline-flex;flex-direction:column;vertical-align:bottom}
+.w b{color:var(--orange);font-size:.85em;min-height:1.25em;font-weight:700}
+.w i{font-style:normal;white-space:pre-wrap}
+.w.k{cursor:pointer}
+.w.k i{color:var(--orange);border-bottom:2px solid var(--orange)}
+.qk{display:flex;gap:6px;flex-wrap:wrap}
+
+/* Tablatura por compases (bajan de renglón si no entran) */
+.ms{display:flex;flex-wrap:wrap;gap:16px}
+.m{border:1px solid var(--line);border-radius:12px;padding:8px 10px;background:var(--soft)}
+.mh{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:12px;color:var(--mut);margin-bottom:4px}
+.ib{background:none;border:0;color:var(--mut);cursor:pointer;padding:2px 6px;border-radius:6px}
+.ib:hover{background:var(--soft2);color:#fff}
+.sc{overflow-x:auto;max-width:100%}
+.tb{border-collapse:collapse}
+.tb th{padding:0 8px 0 0;color:var(--mut);font-weight:normal;text-align:right;font-size:13px}
+.tb td{padding:0;border-bottom:1px solid var(--line)}
+.tb input{width:28px;height:24px;text-align:center;background:none;border:0;color:var(--ink);font:13px ui-monospace,Menlo,Consolas,monospace}
+.tb button{width:28px;height:24px;background:none;border:0;color:var(--acc);cursor:pointer}
+.tb td.p{background:var(--play)}
+
+/* Ventanas */
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.65);display:grid;place-items:center;z-index:9;padding:16px}
+.md{background:#14161b;border:1px solid var(--line);border-radius:18px;padding:22px;width:min(420px,100%);display:flex;flex-direction:column;gap:12px;max-height:90vh;overflow:auto}
+.md h3{margin:0}
+.md .r{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
+.md textarea{min-height:140px}
+.ck{display:flex;flex-direction:column;gap:8px}
+.st{display:flex;align-items:center;gap:10px}
+.st span{flex:1}
+.st b{min-width:18px;text-align:center;font-weight:500}
+.login{min-height:100vh;display:grid;place-items:center}
+.login .md{width:min(340px,92vw)}
+
+@media(max-width:720px){
+  .app{grid-template-columns:1fr}
+  aside{border-right:0;border-bottom:1px solid var(--line)}
+  .rec{max-height:140px;min-height:0}
+}
+@media print{
+  aside,.top,.no{display:none!important}
+  body{background:#fff;color:#000}
+  .app{display:block}
+  .tb input,.tb button,.tb th,h2,h3,.bpm{color:#000}
+  .tb td,.m{border-color:#999}
+  .w b{color:#d2600a}.w.k i{color:#d2600a}
+}
